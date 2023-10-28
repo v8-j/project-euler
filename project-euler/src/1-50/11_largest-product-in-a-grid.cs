@@ -6,14 +6,139 @@
 // What is the greatest product of four adjacent numbers in the same direction 
 // (up, down, left, right, or diagonally) in the 20 * 20 grid?
 
-class Largest_Product_in_a_Grid 
+using System.ComponentModel;
+
+class Largest_Product_in_a_Grid
 {
     public static void Run()
     {
-        
+        // Convert to 2d array... is this cheating? I think not.
+        int[][] grid = new int[20][];
+        for (int i = 0; i < 20; ++i)
+        {
+            grid[i] = new int[20];
+            for (int j = 0; j < 20; ++j)
+            {
+                grid[i][j] = nums[i * 20 + j];
+            }
+        }
+
+        long greatest = 0;
+        string direction = "";
+        int col = 0, row = 0;
+
+        for (int i = 0; i < 20; ++i) // row
+        {
+            for (int j = 0; j < 20; ++j) // col
+            {
+                long total;
+
+                // eval to the right
+                if (j < 17)
+                {
+                    total = grid[i][j];
+                    for (int k = 1; k < 4; ++k)
+                    {
+                        total *= grid[i][j + k];
+                    }
+
+                    if (total > greatest)
+                    {
+                        greatest = total;
+                        direction = "right";
+                        row = i;
+                        col = j;
+                    }
+                }
+
+                // eval down
+
+                if (i < 17)
+                {
+                    total = grid[i][j];
+                    for (int k = 1; k < 4; ++k)
+                    {
+                        total *= grid[i + k][j];
+                    }
+
+                    if (total > greatest)
+                    {
+                        greatest = total;
+                        direction = "down";
+                        row = i;
+                        col = j;
+                    }
+                }
+
+                // eval up and right
+                if (i >= 3 && j < 17)
+                {
+                    total = grid[i][j];
+                    for (int k = 1; k < 4; ++k)
+                    {
+                        total *= grid[i - k][j + k];
+                    }
+
+                    if (total > greatest)
+                    {
+                        greatest = total;
+                        direction = "up-right";
+                        row = i;
+                        col = j;
+                    }
+                }
+
+                // eval down and right
+                if (i < 17 && j < 17)
+                {
+                    total = grid[i][j];
+                    for (int k = 1; k < 4; ++k)
+                    {
+                        total *= grid[i + k][j + k];
+                    }
+
+                    if (total > greatest)
+                    {
+                        greatest = total;
+                        direction = "down-right";
+                        row = i;
+                        col = j;
+                    }
+                }
+            }
+        }
+
+        Console.Write($"Greatest product was found at [{row}][{col}], "
+        + $"heading {direction}. The products {grid[row][col]}");
+
+        switch (direction)
+        {
+            case "right":
+                for (int i = 1; i < 4; ++i)
+                    Console.Write(" * " + grid[row][col+i]);
+                break;
+
+            case "down":
+                for (int i = 1; i < 4; ++i)
+                    Console.Write(" * " + grid[row+i][col]);
+                break;
+
+            case "up-right":
+                for (int i = 1; i < 4; ++i)
+                    Console.Write(" * " + grid[row - i][col + i]);
+                break;
+
+            case "down-right":
+                for (int i = 1; i < 4; ++i)
+                    Console.Write(" * " + grid[row + i][col + i]);
+                break;
+        }
+
+        Console.WriteLine($" = {greatest}");
+
     }
 
-    static int [] nums = {
+    static int[] nums = {
         08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08,
         49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 04, 56, 62, 00,
         81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 03, 49, 13, 36, 65,
