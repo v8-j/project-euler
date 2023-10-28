@@ -13,5 +13,11 @@
 // Large_Sum.Run();
 // Largest_Collatz_Sequence.Run();
 // Lattice_Paths.Run();
-//Power_Digit_Sum.Run();
-Number_Letter_Counts.Run();
+// Power_Digit_Sum.Run();
+// Number_Letter_Counts.Run();
+// Maximum_Path_Sum_I.Run();
+// Counting_Sundays.Run();
+// Factorial_Digit_Sum.Run();
+// Amicable_Numbers.Run();
+// Names_Scores.Run();
+Non_Abundant_Sums.Run();
