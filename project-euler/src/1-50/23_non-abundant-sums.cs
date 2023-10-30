@@ -16,8 +16,77 @@
 
 class Non_Abundant_Sums
 {
+    static List<int> GetDivisors(int n)
+    {
+        List<int> divisors = new List<int>();
+        for (int i = 1; i <= n / 2; ++i)
+            if (n % i == 0)
+                divisors.Add(i);
+        return divisors;
+    }
+
+    static int SumList(List<int> numbers)
+    {
+        int total = 0;
+        foreach (int n in numbers)
+            total += n;
+        return total;
+    }
+
     public static void Run()
     {
-        
+
+        // find all abundant numbers
+        List<int> abundantNrs = new List<int>();
+        for (int i = 12; i < 28123; ++i)
+        {
+            int sum = SumList(GetDivisors(i));
+
+            if (sum > i)
+                abundantNrs.Add(i);
+        }
+
+        // find all numbers which cannot be expressed as a sum
+        // of any two abudant numbers and add them to the total
+        int total = 0;
+        for (int i = 1; i < 28123; ++i)
+        {
+            bool found = false;
+
+            for (int l = 0; l < abundantNrs.Count; ++l)
+            {
+                if (abundantNrs[l] > i || found)
+                    break;
+
+                for (int r = 0; r < abundantNrs.Count; ++r)
+                {
+                    if (abundantNrs[r] > i)
+                    {
+                        Console.WriteLine("Breakout condition 1");
+                        break;
+                    }
+
+                    int sum = abundantNrs[l] + abundantNrs[r];
+
+                    if (sum == i)
+                    {
+                        found = true;
+                        break;
+                    }
+
+                    if (sum > i)
+                    {
+                        break;
+                    }
+                }
+            }
+            if (!found)
+            {
+                total += i;
+            }
+        }
+
+        Console.WriteLine("sum of all the positive integers which cannot be "
+        + $"written as the sum of two abundant numbers is {total}");
     }
 }

@@ -20,4 +20,9 @@
 // Factorial_Digit_Sum.Run();
 // Amicable_Numbers.Run();
 // Names_Scores.Run();
-Non_Abundant_Sums.Run();
+// Non_Abundant_Sums.Run();
+// Lexicographic_Permutations.Run();
+// _1000_Digit_Fibonacci_Number.Run();
+// Reciprocal_Cycles.Run();
+//Quadratic_Primes.Run();
+Number_Sprial_Diagonals.Run();
