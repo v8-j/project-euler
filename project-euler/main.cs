@@ -21,8 +21,15 @@
 // Amicable_Numbers.Run();
 // Names_Scores.Run();
 // Non_Abundant_Sums.Run();
-// Lexicographic_Permutations.Run();
+// Lexicographic_Permutations.Run();            // unsolved
 // _1000_Digit_Fibonacci_Number.Run();
-// Reciprocal_Cycles.Run();
-//Quadratic_Primes.Run();
-Number_Sprial_Diagonals.Run();
+// Reciprocal_Cycles.Run();                     // unsolved
+// Quadratic_Primes.Run();
+// Number_Sprial_Diagonals.Run();
+// Distinct_Powers.Run();
+// Digit_Fifth_Power.Run();
+// Coin_Sums.Run();                             // unsolved
+// Pandigital_Product.Run();
+// Digit_Cancelling_Fractions.Run();
+Digit_Factorials.Run();
+

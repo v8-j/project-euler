@@ -23,83 +23,83 @@
 
 class Quadratic_Primes
 {
-static bool IsPrime(List<long> primes, int n)
-{
-    if (n < 2)
-        return false;
-    if (n == 2)
-        return true;
-    if (n % 2 == 0)
-        return false;
-
-    for (int i = 0; i < primes.Count; ++i)
+    static bool IsPrime(List<long> primes, int n)
     {
-        if (primes[i] == n)
+        if (n < 2)
+            return false;
+        if (n == 2)
             return true;
+        if (n % 2 == 0)
+            return false;
 
-        if (primes[i] > n)
-            break;
-    }
-    return false;
-}
-
-public static void Run()
-{
-    // calculate the first 'nrPrimes' prime numbers.
-    int nrPrimes = 50_000;
-    List<long> primes = new List<long>();
-    primes.Add(2);
-
-    for (int i = 3, n = 1; n <= nrPrimes; i += 2)
-    {
-        bool isPrime = true;
-
-        for (int j = 0; j < primes.Count; ++j)
+        for (int i = 0; i < primes.Count; ++i)
         {
-            if (i % primes[j] == 0)
-            {
-                isPrime = false;
+            if (primes[i] == n)
+                return true;
+
+            if (primes[i] > n)
                 break;
-            }
         }
-
-        if (isPrime)
-        {
-            primes.Add(i);
-            ++n;
-        }
+        return false;
     }
 
-    int maxPrimes = 0;
-    int _A = 0, _B = 0;
-    int maxN = 100;
-
-    for (int a = -999; a < 1000; ++a)
+    public static void Run()
     {
-        for (int b = -999; b <= 1000; ++b)
-        {
-            int primeCount = 0;
+        // calculate the first 'nrPrimes' prime numbers.
+        int nrPrimes = 50_000;
+        List<long> primes = new List<long>();
+        primes.Add(2);
 
-            for (int n = 0; n < maxN; ++n)
+        for (int i = 3, n = 1; n <= nrPrimes; i += 2)
+        {
+            bool isPrime = true;
+
+            for (int j = 0; j < primes.Count; ++j)
             {
-                int v = (n * n) + (a * n) + b;
-                if (IsPrime(primes, v))
-                    ++primeCount;
+                if (i % primes[j] == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
             }
 
-            if (primeCount > maxPrimes)
+            if (isPrime)
             {
-                maxPrimes = primeCount;
-                _A = a;
-                _B = b;
-                Console.WriteLine(
-                    $"a={a} & b={b} produced {primeCount} primes");
+                primes.Add(i);
+                ++n;
             }
         }
-    }
 
-    int product = _A * _B;
-    Console.WriteLine($"a={_A} b={_B} yielded the largest number of primes "
-    + $"({maxPrimes}). Their product is {product}");
-}
+        int maxPrimes = 0;
+        int _A = 0, _B = 0;
+        int maxN = 100;
+
+        for (int a = -999; a < 1000; ++a)
+        {
+            for (int b = -999; b <= 1000; ++b)
+            {
+                int primeCount = 0;
+
+                for (int n = 0; n < maxN; ++n)
+                {
+                    int v = (n * n) + (a * n) + b;
+                    if (IsPrime(primes, v))
+                        ++primeCount;
+                }
+
+                if (primeCount > maxPrimes)
+                {
+                    maxPrimes = primeCount;
+                    _A = a;
+                    _B = b;
+                    Console.WriteLine(
+                        $"a={a} & b={b} produced {primeCount} primes");
+                }
+            }
+        }
+
+        int product = _A * _B;
+        Console.WriteLine($"a={_A} b={_B} yielded the largest number of primes "
+        + $"({maxPrimes}). Their product is {product}");
+    }
 }
