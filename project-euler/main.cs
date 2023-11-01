@@ -31,5 +31,9 @@
 // Coin_Sums.Run();                             // unsolved
 // Pandigital_Product.Run();
 // Digit_Cancelling_Fractions.Run();
-Digit_Factorials.Run();
+// Digit_Factorials.Run();
+// Circular_Primes.Run();                       // unsolved
+// Double_Base_Palindrome.Run();
+// Truncatable_Primes.Run();
+Pandigital_Multiple.Run();
 

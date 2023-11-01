@@ -6,6 +6,9 @@
 
 // How to rewrite this so outer loop is nrTerms? I need some sleep :)
 
+// Turns out only 3 and 5 terms needed to be checked, each yeilding 1 hit.
+// So thats two numbers total... 145 and 40585. Maybe I'll revisit this...
+
 class Digit_Factorials
 {
     static long Factorial(int n)
@@ -23,18 +26,17 @@ class Digit_Factorials
 
     public static void Run()
     {
-        // cache the values of f_n 0! -> 9! I dont think we even need > 5!
+        // cache the values of f_n 0! -> 9!
         int[] f = new int[10];
         for (int i = 0; i < 10; ++i)
             f[i] = (int)Factorial(i);
 
         int a, b, c, d, e;
-        a = b = c = 0;
 
         long total = 0;
-        int iterations = 0;
-
+        
         // 3 terms
+        a = b = c = 0;
         while (a < 10)
         {
             while (b < 10)
@@ -50,7 +52,6 @@ class Digit_Factorials
                         total += sum;
                         Console.WriteLine($"{a}! + {b}! + {c}! = {sum}");
                     }
-                    ++iterations;
                     ++c;
                 }
                 ++b;
@@ -60,9 +61,8 @@ class Digit_Factorials
             b = 0;
         }
 
-        a = b = c = d = 0;
-
         // 4 terms
+        a = b = c = d = 0;
         while (a < 10)
         {
             while (b < 10)
@@ -80,7 +80,6 @@ class Digit_Factorials
                             total += sum;
                             Console.WriteLine($"{a}! + {b}! + {c}! + {d}! = {sum}");
                         }
-                        ++iterations;
                         ++d;
                     }
                     ++c;
@@ -93,9 +92,8 @@ class Digit_Factorials
             b = 0;
         }
 
-        a = b = c = d = e = 0;
-
         // 5 terms
+        a = b = c = d = e = 0;
         while (a < 10)
         {
             while (b < 10)
@@ -108,14 +106,13 @@ class Digit_Factorials
                         {
                             long sum = f[a] + f[b] + f[c] + f[d] + f[e];
                             string fString = sum.ToString();
-                            string nString = a.ToString() + b.ToString() + c.ToString() + d.ToString() + e.ToString(); 
+                            string nString = a.ToString() + b.ToString() + c.ToString() + d.ToString() + e.ToString();
 
                             if (fString == nString)
                             {
                                 total += sum;
                                 Console.WriteLine($"{a}! + {b}! + {c}! + {d}! + {e}! = {sum}");
                             }
-                            ++iterations;
                             ++e;
                         }
                         ++d;
@@ -130,9 +127,6 @@ class Digit_Factorials
             ++a;
             b = 0;
         }
-
-        Console.WriteLine($"{iterations} iterations.");
-
 
     }
 
